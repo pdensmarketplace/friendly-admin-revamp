@@ -5,8 +5,27 @@ import { Sidebar } from "@/components/layout/Sidebar";
 import { VersionTable } from "@/components/version/VersionTable";
 import { Layers, Key, Plus, Search } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { AddVersionForm } from "@/components/version/AddVersionForm";
+import { useToast } from "@/components/ui/use-toast";
 
 const Index = () => {
+  const { toast } = useToast();
+
+  const handleAddVersion = (values: any) => {
+    console.log("New version:", values);
+    toast({
+      title: "Version Added",
+      description: "New version has been successfully added.",
+    });
+  };
+
   return (
     <div className="flex h-screen bg-secondary">
       <Sidebar />
@@ -57,10 +76,20 @@ const Index = () => {
                     />
                   </div>
                   
-                  <Button>
-                    <Plus className="mr-2 h-4 w-4" />
-                    Add New Version
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button>
+                        <Plus className="mr-2 h-4 w-4" />
+                        Add New Version
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>Add New Version</DialogTitle>
+                      </DialogHeader>
+                      <AddVersionForm onSubmit={handleAddVersion} />
+                    </DialogContent>
+                  </Dialog>
                 </div>
 
                 <VersionTable />
