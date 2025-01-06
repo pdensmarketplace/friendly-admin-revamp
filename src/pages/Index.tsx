@@ -15,20 +15,20 @@ const Index = () => {
         <Header />
         
         <div className="flex-1 flex">
-          {/* Side Panel Tabs */}
-          <div className="w-64 border-r bg-white shadow-sm">
+          {/* Side Panel Tabs - Now with improved styling */}
+          <div className="w-64 border-r bg-gray-50/80 shadow-sm">
             <Tabs defaultValue="app-version" orientation="vertical" className="h-full">
-              <TabsList className="flex flex-col h-full space-y-1 bg-white p-2 border-0">
+              <TabsList className="flex flex-col h-auto space-y-1 bg-transparent p-2 border-0 sticky top-0">
                 <TabsTrigger 
                   value="app-version"
-                  className="w-full justify-start gap-2 px-4 py-3 data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-gray-100 transition-colors"
+                  className="w-full justify-start gap-2 px-4 py-3 data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-primary hover:bg-white/80 transition-colors"
                 >
                   <Layers className="h-4 w-4" />
                   App Version
                 </TabsTrigger>
                 <TabsTrigger 
                   value="otp"
-                  className="w-full justify-start gap-2 px-4 py-3 data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-gray-100 transition-colors"
+                  className="w-full justify-start gap-2 px-4 py-3 data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-primary hover:bg-white/80 transition-colors"
                 >
                   <Key className="h-4 w-4" />
                   OTP
@@ -38,9 +38,9 @@ const Index = () => {
           </div>
 
           {/* Main Content Area */}
-          <main className="flex-1 overflow-y-auto p-6">
+          <main className="flex-1 overflow-y-auto bg-white">
             <Tabs defaultValue="app-version" orientation="vertical">
-              <TabsContent value="app-version" className="mt-0">
+              <TabsContent value="app-version" className="m-0 p-6">
                 <div className="mb-6">
                   <h1 className="text-2xl font-semibold text-gray-900">App Version Configuration</h1>
                   <p className="mt-1 text-sm text-gray-500">
@@ -66,7 +66,7 @@ const Index = () => {
                 <VersionTable />
               </TabsContent>
 
-              <TabsContent value="otp" className="mt-0">
+              <TabsContent value="otp" className="m-0 p-6">
                 <div className="mb-6">
                   <h1 className="text-2xl font-semibold text-gray-900">OTP Configuration</h1>
                   <p className="mt-1 text-sm text-gray-500">
