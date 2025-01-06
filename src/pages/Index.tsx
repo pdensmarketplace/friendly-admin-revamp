@@ -16,19 +16,19 @@ const Index = () => {
         
         <div className="flex-1 flex">
           {/* Side Panel Tabs */}
-          <div className="w-64 border-r bg-white">
+          <div className="w-64 border-r bg-white shadow-sm">
             <Tabs defaultValue="app-version" orientation="vertical" className="h-full">
-              <TabsList className="flex flex-col h-full space-y-2 bg-white p-4 border-0">
+              <TabsList className="flex flex-col h-full space-y-1 bg-white p-2 border-0">
                 <TabsTrigger 
                   value="app-version"
-                  className="w-full justify-start gap-2 px-4 py-2"
+                  className="w-full justify-start gap-2 px-4 py-3 data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-gray-100 transition-colors"
                 >
                   <Layers className="h-4 w-4" />
                   App Version
                 </TabsTrigger>
                 <TabsTrigger 
                   value="otp"
-                  className="w-full justify-start gap-2 px-4 py-2"
+                  className="w-full justify-start gap-2 px-4 py-3 data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-gray-100 transition-colors"
                 >
                   <Key className="h-4 w-4" />
                   OTP
@@ -40,8 +40,8 @@ const Index = () => {
           {/* Main Content Area */}
           <main className="flex-1 overflow-y-auto p-6">
             <Tabs defaultValue="app-version" orientation="vertical">
-              <TabsContent value="app-version">
-                <div className="mb-8">
+              <TabsContent value="app-version" className="mt-0">
+                <div className="mb-6">
                   <h1 className="text-2xl font-semibold text-gray-900">App Version Configuration</h1>
                   <p className="mt-1 text-sm text-gray-500">
                     Manage and configure different versions of your application
@@ -66,8 +66,8 @@ const Index = () => {
                 <VersionTable />
               </TabsContent>
 
-              <TabsContent value="otp">
-                <div className="mb-8">
+              <TabsContent value="otp" className="mt-0">
+                <div className="mb-6">
                   <h1 className="text-2xl font-semibold text-gray-900">OTP Configuration</h1>
                   <p className="mt-1 text-sm text-gray-500">
                     Manage OTP settings and configurations
