@@ -10,6 +10,9 @@ import {
   Settings,
   ShoppingCart,
   Users,
+  Store,
+  Package,
+  CreditCard,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
@@ -17,6 +20,9 @@ const navigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
   { name: "Product Catalog", href: "/products", icon: Box },
   { name: "Inventory & Orders", href: "/inventory", icon: ShoppingCart },
+  { name: "E-Shop", href: "/e-shop", icon: Store },
+  { name: "Products", href: "/e-shop/products", icon: Package },
+  { name: "Orders", href: "/e-shop/orders", icon: CreditCard },
   { name: "Platform Config", href: "/platform", icon: Settings },
   { name: "Integrations", href: "/integrations", icon: Globe },
   { name: "Subscribers", href: "/subscribers", icon: Users },
