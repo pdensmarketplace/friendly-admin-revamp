@@ -8,6 +8,7 @@ import { Sidebar } from "@/components/layout/Sidebar";
 import { CustomerAnalytics } from "@/components/dashboard/CustomerAnalytics";
 import { ProductPerformance } from "@/components/dashboard/ProductPerformance";
 import { EshopAnalytics } from "@/components/dashboard/EshopAnalytics";
+import { useLocation } from "react-router-dom";
 import {
   Activity,
   CreditCard,
@@ -20,6 +21,9 @@ import {
 } from "lucide-react";
 
 export default function DashboardPage() {
+  const location = useLocation();
+  const defaultTab = location.state?.defaultTab || 'overview';
+
   return (
     <div className="flex h-screen">
       <Sidebar />
@@ -32,7 +36,7 @@ export default function DashboardPage() {
               <CalendarDateRangePicker />
             </div>
           </div>
-          <Tabs defaultValue="overview" className="space-y-4">
+          <Tabs defaultValue={defaultTab} className="space-y-4">
             <TabsList className="bg-white">
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="customers">Customers</TabsTrigger>
