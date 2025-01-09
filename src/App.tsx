@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import DashboardPage from "./pages/Dashboard";
+import BYOPPage from "./pages/BYOP";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
           <Route path="/e-shop" element={<Navigate to="/dashboard" replace state={{ defaultTab: 'e-shop' }} />} />
           <Route path="/customers" element={<Navigate to="/dashboard" replace state={{ defaultTab: 'customers' }} />} />
           <Route path="/products" element={<Navigate to="/dashboard" replace state={{ defaultTab: 'products' }} />} />
+          <Route path="/byop" element={<BYOPPage />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

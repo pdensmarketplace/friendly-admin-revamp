@@ -13,6 +13,7 @@ import {
   Store,
   Package,
   CreditCard,
+  PackageOpen,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
@@ -23,6 +24,7 @@ const navigation = [
   { name: "E-Shop", href: "/e-shop", icon: Store },
   { name: "Products", href: "/e-shop/products", icon: Package },
   { name: "Orders", href: "/e-shop/orders", icon: CreditCard },
+  { name: "BYOP", href: "/byop", icon: PackageOpen },
   { name: "Platform Config", href: "/platform", icon: Settings },
   { name: "Integrations", href: "/integrations", icon: Globe },
   { name: "Subscribers", href: "/subscribers", icon: Users },
