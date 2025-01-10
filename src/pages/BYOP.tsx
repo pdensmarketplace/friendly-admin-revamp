@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Package } from "lucide-react";
+import { Package, Plus } from "lucide-react";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as z from "zod";
 import { BasicInfoTab } from "@/components/byop/BasicInfoTab";
@@ -79,6 +79,12 @@ export default function BYOPPage() {
     console.log(values);
   }
 
+  const savedPackages = [
+    { id: '1', name: 'Basic Package', status: 'active' },
+    { id: '2', name: 'Premium Package', status: 'active' },
+    { id: '3', name: 'Enterprise Package', status: 'inactive' },
+  ];
+
   return (
     <div className="flex h-screen">
       <Sidebar />
@@ -97,71 +103,101 @@ export default function BYOPPage() {
                 <Package className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">12</div>
+                <div className="text-2xl font-bold">{savedPackages.length}</div>
               </CardContent>
             </Card>
           </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Package Configuration</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Tabs defaultValue="basic" className="space-y-4">
-                <TabsList>
-                  <TabsTrigger value="basic">Basic Info</TabsTrigger>
-                  <TabsTrigger value="validity">Validity</TabsTrigger>
-                  <TabsTrigger value="resources">Resources</TabsTrigger>
-                  <TabsTrigger value="pricing">Pricing</TabsTrigger>
-                  <TabsTrigger value="preview">Preview</TabsTrigger>
-                  <TabsTrigger value="sliders">Sliders</TabsTrigger>
-                </TabsList>
+          <div className="flex gap-6">
+            {/* Side Panel */}
+            <Card className="w-64">
+              <CardHeader>
+                <CardTitle className="flex justify-between items-center">
+                  <span>Packages</span>
+                  <Button size="sm" variant="outline">
+                    <Plus className="h-4 w-4 mr-1" />
+                    New
+                  </Button>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  {savedPackages.map((pkg) => (
+                    <Button
+                      key={pkg.id}
+                      variant="ghost"
+                      className="w-full justify-start"
+                    >
+                      <Package className="h-4 w-4 mr-2" />
+                      {pkg.name}
+                    </Button>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
 
-                <Form {...form}>
-                  <TabsContent value="basic">
-                    <BasicInfoTab form={form} />
-                  </TabsContent>
+            {/* Main Content */}
+            <Card className="flex-1">
+              <CardHeader>
+                <CardTitle>Package Configuration</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Tabs defaultValue="basic" className="space-y-4">
+                  <TabsList>
+                    <TabsTrigger value="basic">Basic Info</TabsTrigger>
+                    <TabsTrigger value="validity">Validity</TabsTrigger>
+                    <TabsTrigger value="resources">Resources</TabsTrigger>
+                    <TabsTrigger value="pricing">Pricing</TabsTrigger>
+                    <TabsTrigger value="preview">Preview</TabsTrigger>
+                    <TabsTrigger value="sliders">Sliders</TabsTrigger>
+                  </TabsList>
 
-                  <TabsContent value="validity">
-                    <ValidityTab
-                      form={form}
-                      validityFields={validityFields}
-                      appendValidity={() =>
-                        appendValidity({
-                          duration: "",
-                          resources: [
-                            {
-                              type: "",
-                              amount: "",
-                              unit: "",
-                              jump: "",
-                              priceSlabs: [{ from: "", to: "", price: "" }],
-                            },
-                          ],
-                        })
-                      }
-                    />
-                  </TabsContent>
+                  <Form {...form}>
+                    <TabsContent value="basic">
+                      <BasicInfoTab form={form} />
+                    </TabsContent>
 
-                  <TabsContent value="resources">
-                    <ResourcesTab form={form} validityFields={validityFields} />
-                  </TabsContent>
+                    <TabsContent value="validity">
+                      <ValidityTab
+                        form={form}
+                        validityFields={validityFields}
+                        appendValidity={() =>
+                          appendValidity({
+                            duration: "",
+                            resources: [
+                              {
+                                type: "",
+                                amount: "",
+                                unit: "",
+                                jump: "",
+                                priceSlabs: [{ from: "", to: "", price: "" }],
+                              },
+                            ],
+                          })
+                        }
+                      />
+                    </TabsContent>
 
-                  <TabsContent value="pricing">
-                    <PricingTab form={form} validityFields={validityFields} />
-                  </TabsContent>
+                    <TabsContent value="resources">
+                      <ResourcesTab form={form} validityFields={validityFields} />
+                    </TabsContent>
 
-                  <TabsContent value="preview">
-                    <PreviewTab form={form} />
-                  </TabsContent>
+                    <TabsContent value="pricing">
+                      <PricingTab form={form} validityFields={validityFields} />
+                    </TabsContent>
 
-                  <TabsContent value="sliders">
-                    <SlidersTab form={form} validityFields={validityFields} />
-                  </TabsContent>
-                </Form>
-              </Tabs>
-            </CardContent>
-          </Card>
+                    <TabsContent value="preview">
+                      <PreviewTab form={form} />
+                    </TabsContent>
+
+                    <TabsContent value="sliders">
+                      <SlidersTab form={form} validityFields={validityFields} />
+                    </TabsContent>
+                  </Form>
+                </Tabs>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </div>
