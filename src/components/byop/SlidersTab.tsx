@@ -3,6 +3,7 @@ import { Slider } from "@/components/ui/slider";
 import { UseFormReturn } from "react-hook-form";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 interface SlidersTabProps {
   form: UseFormReturn<any>;
@@ -12,6 +13,7 @@ interface SlidersTabProps {
 export function SlidersTab({ form, validityFields }: SlidersTabProps) {
   const [selectedValidity, setSelectedValidity] = useState<number | null>(null);
   const [selectedResources, setSelectedResources] = useState<Record<string, number>>({});
+  const { toast } = useToast();
 
   const calculatePrice = () => {
     if (selectedValidity === null) return 0;
@@ -42,6 +44,31 @@ export function SlidersTab({ form, validityFields }: SlidersTabProps) {
       ...prev,
       [type]: value[0]
     }));
+  };
+
+  const handleSave = () => {
+    if (selectedValidity === null) {
+      toast({
+        title: "Error",
+        description: "Please select a validity period first",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Here you would typically save the configuration
+    const configuration = {
+      validityPeriod: selectedValidity,
+      resources: selectedResources,
+      totalPrice: calculatePrice(),
+    };
+
+    console.log('Saving configuration:', configuration);
+    
+    toast({
+      title: "Success",
+      description: "Configuration saved successfully",
+    });
   };
 
   return (
@@ -92,6 +119,12 @@ export function SlidersTab({ form, validityFields }: SlidersTabProps) {
             <div className="flex justify-between items-center pt-4 border-t">
               <span className="text-lg font-medium">Total Price</span>
               <span className="text-lg font-bold">₹ {calculatePrice().toFixed(2)}</span>
+            </div>
+
+            <div className="flex justify-end pt-4">
+              <Button onClick={handleSave}>
+                Save Configuration
+              </Button>
             </div>
           </CardContent>
         </Card>
