@@ -12,6 +12,7 @@ import { ValidityTab } from "@/components/byop/ValidityTab";
 import { ResourcesTab } from "@/components/byop/ResourcesTab";
 import { PricingTab } from "@/components/byop/PricingTab";
 import { PreviewTab } from "@/components/byop/PreviewTab";
+import { SlidersTab } from "@/components/byop/SlidersTab";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -31,6 +32,7 @@ const formSchema = z.object({
           type: z.string(),
           amount: z.string(),
           unit: z.string(),
+          jump: z.string(),
           priceSlabs: z.array(
             z.object({
               from: z.string(),
@@ -59,6 +61,7 @@ export default function BYOPPage() {
               type: "",
               amount: "",
               unit: "",
+              jump: "",
               priceSlabs: [{ from: "", to: "", price: "" }],
             },
           ],
@@ -111,6 +114,7 @@ export default function BYOPPage() {
                   <TabsTrigger value="resources">Resources</TabsTrigger>
                   <TabsTrigger value="pricing">Pricing</TabsTrigger>
                   <TabsTrigger value="preview">Preview</TabsTrigger>
+                  <TabsTrigger value="sliders">Sliders</TabsTrigger>
                 </TabsList>
 
                 <Form {...form}>
@@ -130,6 +134,7 @@ export default function BYOPPage() {
                               type: "",
                               amount: "",
                               unit: "",
+                              jump: "",
                               priceSlabs: [{ from: "", to: "", price: "" }],
                             },
                           ],
@@ -148,6 +153,10 @@ export default function BYOPPage() {
 
                   <TabsContent value="preview">
                     <PreviewTab form={form} />
+                  </TabsContent>
+
+                  <TabsContent value="sliders">
+                    <SlidersTab form={form} validityFields={validityFields} />
                   </TabsContent>
                 </Form>
               </Tabs>

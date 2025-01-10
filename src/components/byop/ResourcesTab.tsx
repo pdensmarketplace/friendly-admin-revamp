@@ -78,7 +78,7 @@ export function ResourcesTab({ form, validityFields }: ResourcesTabProps) {
                       </FormItem>
                     )}
                   />
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-3 gap-4">
                     <FormField
                       control={form.control}
                       name={`validityPeriods.${validityIndex}.resources.${resourceIndex}.amount`}
@@ -107,6 +107,22 @@ export function ResourcesTab({ form, validityFields }: ResourcesTabProps) {
                         </FormItem>
                       )}
                     />
+                    <FormField
+                      control={form.control}
+                      name={`validityPeriods.${validityIndex}.resources.${resourceIndex}.jump`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Jump Value</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="number"
+                              placeholder="Enter jump value"
+                              {...field}
+                            />
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
                   </div>
                 </div>
               )
@@ -123,6 +139,7 @@ export function ResourcesTab({ form, validityFields }: ResourcesTabProps) {
                     type: "",
                     amount: "",
                     unit: "",
+                    jump: "",
                     priceSlabs: [{ from: "", to: "", price: "" }],
                   },
                 ])
