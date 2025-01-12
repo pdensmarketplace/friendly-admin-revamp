@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import DashboardPage from "./pages/Dashboard";
 import BYOPPage from "./pages/BYOP";
+import RuleEnginePage from "./pages/RuleEngine";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,9 @@ const App = () => (
           <Route path="/customers" element={<Navigate to="/dashboard" replace state={{ defaultTab: 'customers' }} />} />
           <Route path="/products" element={<Navigate to="/dashboard" replace state={{ defaultTab: 'products' }} />} />
           <Route path="/byop" element={<BYOPPage />} />
+          <Route path="/rule-engine" element={<RuleEnginePage />} />
+          <Route path="/rule-engine/create" element={<RuleEnginePage mode="create" />} />
+          <Route path="/rule-engine/edit/:id" element={<RuleEnginePage mode="edit" />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

@@ -14,6 +14,7 @@ import {
   Package,
   CreditCard,
   PackageOpen,
+  GitBranch,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
@@ -25,6 +26,7 @@ const navigation = [
   { name: "Products", href: "/e-shop/products", icon: Package },
   { name: "Orders", href: "/e-shop/orders", icon: CreditCard },
   { name: "BYOP", href: "/byop", icon: PackageOpen },
+  { name: "Rule Engine", href: "/rule-engine", icon: GitBranch },
   { name: "Platform Config", href: "/platform", icon: Settings },
   { name: "Integrations", href: "/integrations", icon: Globe },
   { name: "Subscribers", href: "/subscribers", icon: Users },
