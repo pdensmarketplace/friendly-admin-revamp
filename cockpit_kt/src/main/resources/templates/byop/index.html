@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BYOP Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Saved Packages</span>
+                        <button class="btn btn-sm btn-outline-primary" id="newPackageBtn">
+                            <i class="bi bi-plus"></i> New
+                        </button>
+                    </h6>
+                    <ul class="nav flex-column" id="packagesList">
+                        <!-- Packages will be dynamically added here -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">BYOP Management</h1>
+                </div>
+
+                <!-- Tabs -->
+                <ul class="nav nav-tabs" id="byopTabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="basic-tab" data-bs-toggle="tab" href="#basic" role="tab">Basic Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="validity-tab" data-bs-toggle="tab" href="#validity" role="tab">Validity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="resources-tab" data-bs-toggle="tab" href="#resources" role="tab">Resources</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pricing-tab" data-bs-toggle="tab" href="#pricing" role="tab">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="preview-tab" data-bs-toggle="tab" href="#preview" role="tab">Preview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="sliders-tab" data-bs-toggle="tab" href="#sliders" role="tab">Sliders</a>
+                    </li>
+                </ul>
+
+                <!-- Tab content -->
+                <div class="tab-content" id="byopTabContent">
+                    <!-- Basic Info Tab -->
+                    <div class="tab-pane fade show active" id="basic" role="tabpanel">
+                        <form id="basicInfoForm" class="mt-4">
+                            <div class="mb-3">
+                                <label for="packageName" class="form-label">Package Name</label>
+                                <input type="text" class="form-control" id="packageName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="packageType" class="form-label">Package Type</label>
+                                <select class="form-select" id="packageType" required>
+                                    <option value="prepaid">Prepaid</option>
+                                    <option value="postpaid">Postpaid</option>
+                                    <option value="family">Family</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="status" class="form-label">Status</label>
+                                <select class="form-select" id="status" required>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                    <option value="draft">Draft</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Validity Tab -->
+                    <div class="tab-pane fade" id="validity" role="tabpanel">
+                        <!-- Validity content -->
+                    </div>
+                    <!-- Resources Tab -->
+                    <div class="tab-pane fade" id="resources" role="tabpanel">
+                        <!-- Resources content -->
+                    </div>
+                    <!-- Pricing Tab -->
+                    <div class="tab-pane fade" id="pricing" role="tabpanel">
+                        <!-- Pricing content -->
+                    </div>
+                    <!-- Preview Tab -->
+                    <div class="tab-pane fade" id="preview" role="tabpanel">
+                        <!-- Preview content -->
+                    </div>
+                    <!-- Sliders Tab -->
+                    <div class="tab-pane fade" id="sliders" role="tabpanel">
+                        <!-- Sliders content -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/byop.js"></script>
+</body>
+</html>
