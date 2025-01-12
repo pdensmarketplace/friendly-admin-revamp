@@ -24,7 +24,6 @@ function submitVersion() {
     const formData = new FormData(form);
     
     const version = {
-        id: Date.now(), // Temporary ID
         platform: formData.get('platform'),
         channel: formData.get('channel'),
         versionNumber: formData.get('versionNumber'),

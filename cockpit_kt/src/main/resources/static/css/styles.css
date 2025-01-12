@@ -1,4 +1,3 @@
-/* Sidebar */
 .sidebar {
     position: fixed;
     top: 0;
@@ -18,46 +17,16 @@
     color: #2470dc;
 }
 
-/* Main content */
-main {
-    padding-top: 1.5rem;
+.navbar-brand {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
 }
 
-/* Platform badges */
+.navbar .navbar-toggler {
+    top: .25rem;
+    right: 1rem;
+}
+
 .badge {
     padding: 0.5em 1em;
-}
-
-/* Table styles */
-.table {
-    margin-bottom: 0;
-}
-
-.table th {
-    border-top: none;
-    background-color: #f8f9fa;
-}
-
-/* Modal styles */
-.modal-header {
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #dee2e6;
-}
-
-.modal-footer {
-    background-color: #f8f9fa;
-    border-top: 1px solid #dee2e6;
-}
-
-/* Responsive adjustments */
-@media (max-width: 767.98px) {
-    .sidebar {
-        position: static;
-        height: auto;
-        padding-top: 0;
-    }
-    
-    main {
-        margin-left: 0;
-    }
 }
