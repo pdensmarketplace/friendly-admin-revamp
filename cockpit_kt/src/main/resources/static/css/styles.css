@@ -1,3 +1,4 @@
+/* Sidebar */
 .sidebar {
     position: fixed;
     top: 0;
@@ -8,27 +9,55 @@
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 }
 
-.sidebar-heading {
-    font-size: .75rem;
-    text-transform: uppercase;
-}
-
-main {
-    padding-top: 48px;
-}
-
-.nav-tabs {
-    margin-bottom: 1rem;
-}
-
-.tab-content {
-    padding: 1rem;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    border-top: none;
-    border-radius: 0 0 .25rem .25rem;
-}
-
-.form-label {
+.sidebar .nav-link {
     font-weight: 500;
+    color: #333;
+}
+
+.sidebar .nav-link.active {
+    color: #2470dc;
+}
+
+/* Main content */
+main {
+    padding-top: 1.5rem;
+}
+
+/* Platform badges */
+.badge {
+    padding: 0.5em 1em;
+}
+
+/* Table styles */
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    border-top: none;
+    background-color: #f8f9fa;
+}
+
+/* Modal styles */
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .sidebar {
+        position: static;
+        height: auto;
+        padding-top: 0;
+    }
+    
+    main {
+        margin-left: 0;
+    }
 }
