@@ -1,0 +1,37 @@
+.badge {
+    padding: 0.5em 1em;
+}
+
+.dropdown-menu {
+    min-width: 200px;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+
+.dropdown-item:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #f8f9fa;
+}
+
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
