@@ -19,9 +19,10 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/e-shop" element={<Navigate to="/dashboard" replace state={{ defaultTab: 'e-shop' }} />} />
-          <Route path="/customers" element={<Navigate to="/dashboard" replace state={{ defaultTab: 'customers' }} />} />
+          <Route path="/catalog" element={<Navigate to="/products" replace />} />
           <Route path="/products" element={<Navigate to="/dashboard" replace state={{ defaultTab: 'products' }} />} />
+          <Route path="/categories" element={<Navigate to="/dashboard" replace state={{ defaultTab: 'categories' }} />} />
+          <Route path="/inventory" element={<Navigate to="/dashboard" replace state={{ defaultTab: 'inventory' }} />} />
           <Route path="/byop" element={<BYOPPage />} />
           <Route path="/rule-engine" element={<RuleEnginePage />} />
           <Route path="/rule-engine/create" element={<RuleEnginePage mode="create" />} />
