@@ -62,7 +62,7 @@ export const RuleList = () => {
               <TableCell className="capitalize">{rule.frequency}</TableCell>
               <TableCell>
                 <Badge
-                  variant={rule.status === "active" ? "success" : "secondary"}
+                  variant={rule.status === "active" ? "default" : "secondary"}
                   className="capitalize"
                 >
                   {rule.status}
