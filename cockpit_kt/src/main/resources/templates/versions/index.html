@@ -2,58 +2,119 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Version Management</title>
+    <title>Platform Configuration</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
-            <!-- Sidebar -->
-            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+            <!-- Main Sidebar -->
+            <nav class="col-md-2 d-md-block bg-dark sidebar">
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="/versions">
-                                Version Management
+                            <a class="nav-link text-white" href="/dashboard">
+                                Dashboard
                             </a>
                         </li>
-                        <!-- Add other navigation items here -->
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/product-catalog">
+                                Product Catalog
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/inventory">
+                                Inventory & Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" href="/platform-config">
+                                Platform Config
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/subscribers">
+                                Subscribers
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/analytics">
+                                Analytics
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
 
-            <!-- Main content -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1>Version Management</h1>
+            <!-- Inner Sidebar -->
+            <div class="col-md-2 inner-sidebar">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/versions">
+                            App Version
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/add-version">
+                            Add Version
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/otp">
+                            OTP
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/settings">
+                            Settings
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/integrations">
+                            Integrations
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <main class="col-md-8 ms-sm-auto px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+                    <div>
+                        <h1 class="h2">App Version Configuration</h1>
+                        <p class="text-muted">Manage and configure different versions of your application</p>
+                    </div>
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVersionModal">
-                        Add New Version
+                        + Add New Version
                     </button>
                 </div>
 
-                <!-- Filters -->
-                <div class="row mb-3">
-                    <div class="col-md-3">
-                        <select id="platformFilter" class="form-select">
-                            <option value="All">All Platforms</option>
-                            <option value="ios">iOS</option>
-                            <option value="android">Android</option>
-                            <option value="web">Web</option>
-                        </select>
+                <!-- Search and Filters -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <input type="text" class="search-box" placeholder="Search versions...">
                     </div>
-                    <div class="col-md-3">
-                        <select id="channelFilter" class="form-select">
-                            <option value="All">All Channels</option>
-                            <option value="sc_app">SC App</option>
-                            <option value="sc_flutter_web">SC Flutter Web</option>
-                        </select>
+                    <div class="col-md-6">
+                        <div class="filter-section">
+                            <select id="platformFilter" class="filter-select">
+                                <option value="All">All Platforms</option>
+                                <option value="ios">iOS</option>
+                                <option value="android">Android</option>
+                                <option value="web">Web</option>
+                            </select>
+                            <select id="channelFilter" class="filter-select">
+                                <option value="All">All Channels</option>
+                                <option value="sc_app">SC App</option>
+                                <option value="sc_flutter_web">SC Flutter Web</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Versions Table -->
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="custom-table">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -69,22 +130,40 @@
                                 <td th:text="${version.id}"></td>
                                 <td>
                                     <span th:text="${version.platform}" 
-                                          th:class="${'badge ' + (version.platform == 'ios' ? 'bg-primary' : 
-                                                               version.platform == 'android' ? 'bg-success' : 'bg-info')}">
+                                          th:class="${'platform-badge ' + version.platform}">
                                     </span>
                                 </td>
                                 <td th:text="${version.channel}"></td>
                                 <td th:text="${version.versionNumber}"></td>
                                 <td th:text="${version.themeName}"></td>
                                 <td>
-                                    <button class="btn btn-sm btn-danger" 
-                                            th:onclick="'deleteVersion(' + ${version.id} + ')'">
-                                        Delete
-                                    </button>
+                                    <div class="d-flex gap-2">
+                                        <button class="action-btn">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <button class="action-btn delete" 
+                                                th:onclick="'deleteVersion(' + ${version.id} + ')'">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <span class="pagination-info">Showing page 1 of 5</span>
+                    <div class="pagination-controls">
+                        <button class="page-btn">&lt;</button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn">4</button>
+                        <button class="page-btn">5</button>
+                        <button class="page-btn">&gt;</button>
+                    </div>
                 </div>
             </main>
         </div>

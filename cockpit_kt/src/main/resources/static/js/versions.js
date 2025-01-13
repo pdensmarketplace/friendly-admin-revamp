@@ -6,9 +6,9 @@ function filterVersions() {
     const platform = document.getElementById('platformFilter').value;
     const channel = document.getElementById('channelFilter').value;
     
-    const rows = document.querySelectorAll('tbody tr');
+    const rows = document.querySelectorAll('.custom-table tbody tr');
     rows.forEach(row => {
-        const rowPlatform = row.querySelector('td:nth-child(2)').textContent.trim();
+        const rowPlatform = row.querySelector('td:nth-child(2) .platform-badge').textContent.trim();
         const rowChannel = row.querySelector('td:nth-child(3)').textContent.trim();
         
         const platformMatch = platform === 'All' || rowPlatform === platform;
@@ -65,3 +65,14 @@ function deleteVersion(id) {
         });
     }
 }
+
+// Search functionality
+document.querySelector('.search-box').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const rows = document.querySelectorAll('.custom-table tbody tr');
+    
+    rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(searchTerm) ? '' : 'none';
+    });
+});
