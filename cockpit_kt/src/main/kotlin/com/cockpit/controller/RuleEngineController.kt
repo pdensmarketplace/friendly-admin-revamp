@@ -1,5 +1,6 @@
 package com.cockpit.controller
 
+import com.cockpit.model.RuleEngineData
 import org.springframework.web.bind.annotation.*
 
 @RestController
