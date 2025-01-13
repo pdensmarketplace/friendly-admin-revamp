@@ -11,16 +11,27 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
                 <div class="position-sticky pt-3">
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Saved Packages</span>
-                        <button class="btn btn-sm btn-outline-primary" id="newPackageBtn">
-                            <i class="bi bi-plus"></i> New
-                        </button>
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">
+                        <span>Product Catalog</span>
                     </h6>
-                    <ul class="nav flex-column" id="packagesList">
-                        <!-- Packages will be dynamically added here -->
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/products">
+                                Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/categories">
+                                Categories
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" href="/byop">
+                                BYOP
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
