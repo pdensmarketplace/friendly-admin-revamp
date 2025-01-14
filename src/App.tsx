@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import DashboardPage from "./pages/Dashboard";
 import BYOPPage from "./pages/BYOP";
 import RuleEnginePage from "./pages/RuleEngine";
+import ServiceConfigPage from "./pages/ServiceConfig";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/categories" element={<Navigate to="/dashboard" replace state={{ defaultTab: 'categories' }} />} />
           <Route path="/inventory" element={<Navigate to="/dashboard" replace state={{ defaultTab: 'inventory' }} />} />
           <Route path="/byop" element={<BYOPPage />} />
+          <Route path="/service-config" element={<ServiceConfigPage />} />
           <Route path="/rule-engine" element={<RuleEnginePage />} />
           <Route path="/rule-engine/create" element={<RuleEnginePage mode="create" />} />
           <Route path="/rule-engine/edit/:id" element={<RuleEnginePage mode="edit" />} />
