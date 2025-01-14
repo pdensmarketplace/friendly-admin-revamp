@@ -10,9 +10,12 @@ let currentPackage = {
 document.addEventListener('DOMContentLoaded', () => {
     loadSavedPackages();
     setupFormListeners();
+    setupResourceHandlers();
+    setupPricingHandlers();
+    setupPreviewHandlers();
+    setupSliderHandlers();
 });
 
-// Load saved packages
 async function loadSavedPackages() {
     try {
         const response = await fetch('/byop/packages');
@@ -85,4 +88,145 @@ async function savePackage() {
         console.error('Error saving package:', error);
         alert('Failed to save package. Please try again.');
     }
+}
+
+// Setup resource handlers
+function setupResourceHandlers() {
+    const addResourceBtn = document.getElementById('addResourceBtn');
+    if (addResourceBtn) {
+        addResourceBtn.addEventListener('click', () => {
+            const resourcesList = document.getElementById('resourcesList');
+            const resourceTemplate = `
+                <div class="card resource-item">
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label">Type</label>
+                                <select class="form-select resource-type">
+                                    <option value="data">Data</option>
+                                    <option value="voice">Voice</option>
+                                    <option value="sms">SMS</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Amount</label>
+                                <input type="number" class="form-control resource-amount">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Unit</label>
+                                <input type="text" class="form-control resource-unit">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Jump</label>
+                                <input type="number" class="form-control resource-jump">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            resourcesList.insertAdjacentHTML('beforeend', resourceTemplate);
+        });
+    }
+}
+
+// Setup pricing handlers
+function setupPricingHandlers() {
+    const addPriceSlabBtn = document.getElementById('addPriceSlabBtn');
+    if (addPriceSlabBtn) {
+        addPriceSlabBtn.addEventListener('click', () => {
+            const pricingSlabs = document.getElementById('pricingSlabs');
+            const slabTemplate = `
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Price Slab</h5>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">From</label>
+                                <input type="number" class="form-control" placeholder="0">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">To</label>
+                                <input type="number" class="form-control" placeholder="100">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Price</label>
+                                <input type="number" class="form-control" placeholder="0.00">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            pricingSlabs.insertAdjacentHTML('beforeend', slabTemplate);
+        });
+    }
+}
+
+// Setup preview handlers
+function setupPreviewHandlers() {
+    const previewElement = document.getElementById('packagePreview');
+    if (previewElement) {
+        // Update preview when package changes
+        const updatePreview = () => {
+            previewElement.textContent = JSON.stringify(currentPackage, null, 2);
+        };
+        
+        // Add listeners to form elements that update the preview
+        document.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('change', updatePreview);
+        });
+    }
+}
+
+// Setup slider handlers
+function setupSliderHandlers() {
+    const resourceSliders = document.getElementById('resourceSliders');
+    const totalPriceElement = document.getElementById('totalPrice');
+    
+    function updateTotalPrice() {
+        // Calculate total price based on slider values and price slabs
+        let total = 0;
+        document.querySelectorAll('.resource-slider').forEach(slider => {
+            const value = parseFloat(slider.value);
+            // Add price calculation logic here
+            total += value; // Simplified calculation
+        });
+        
+        if (totalPriceElement) {
+            totalPriceElement.textContent = `₹${total.toFixed(2)}`;
+        }
+    }
+    
+    // Update sliders when resources change
+    const updateSliders = () => {
+        if (resourceSliders) {
+            resourceSliders.innerHTML = '';
+            currentPackage.validityPeriods.forEach(period => {
+                period.resources.forEach(resource => {
+                    const sliderTemplate = `
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${resource.type}</h5>
+                                <input type="range" class="form-range resource-slider" 
+                                       min="0" max="${resource.amount}" step="${resource.jump}"
+                                       value="0">
+                                <div class="d-flex justify-content-between">
+                                    <span>0</span>
+                                    <span>${resource.amount} ${resource.unit}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    resourceSliders.insertAdjacentHTML('beforeend', sliderTemplate);
+                });
+            });
+            
+            // Add event listeners to new sliders
+            document.querySelectorAll('.resource-slider').forEach(slider => {
+                slider.addEventListener('input', updateTotalPrice);
+            });
+        }
+    };
+    
+    // Initial setup
+    updateSliders();
 }
