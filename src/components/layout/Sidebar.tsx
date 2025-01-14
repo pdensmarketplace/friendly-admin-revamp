@@ -10,6 +10,7 @@ import {
   ShoppingCart,
   Users,
   Package,
+  Cog,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
@@ -40,6 +41,7 @@ const navigation: MenuItem[] = [
   },
   { name: "Inventory & Orders", href: "/inventory", icon: ShoppingCart },
   { name: "Platform Config", href: "/platform", icon: Settings },
+  { name: "Service Config", href: "/service-config", icon: Cog },
   { name: "Subscribers", href: "/subscribers", icon: Users },
   { name: "Analytics", href: "/analytics", icon: BarChart2 },
 ];
